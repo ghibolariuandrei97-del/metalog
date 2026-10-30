@@ -61,6 +61,44 @@ enum MetalogDest
 	// Empty function used when debugging is compiled out
 	stock metalog_null() {}
 
+	// Functions with optional arguments are empty stocks (macros can't
+	// handle both metalog_x() and metalog_x(a) without redefinition warnings)
+	stock metalog_dial(history = 8, bool:force = false)
+	{
+		#pragma unused history, force
+		return 0;
+	}
+	stock metalog_get_count(MetalogLevel:level = ML_ALL)
+	{
+		#pragma unused level
+		return 0;
+	}
+	stock metalog_tick_start(id = 0)
+	{
+		#pragma unused id
+		return 0;
+	}
+	stock Float:metalog_tick_stop(id = 0)
+	{
+		#pragma unused id
+		return 0.0;
+	}
+	stock Float:metalog_tick_elapsed(id = 0)
+	{
+		#pragma unused id
+		return 0.0;
+	}
+	stock metalog_tick_reset(id = 0)
+	{
+		#pragma unused id
+		return 0;
+	}
+	stock Float:metalog_perf(id = 0, const label[] = "")
+	{
+		#pragma unused id, label
+		return 0.0;
+	}
+
 	// All calls become empty -> zero overhead
 	// (arguments are NOT evaluated when compiled out)
 	#define metalog(%1)                  	metalog_null()
@@ -78,10 +116,6 @@ enum MetalogDest
 	#define metalog_plugin_level(%1)     	metalog_null()
 	#define metalog_plugin_tag(%1)       	metalog_null()
 	#define metalog_plugin_file(%1)      	metalog_null()
-	#define metalog_dial()               	metalog_null()
-	#define metalog_dial(%1)             	metalog_null()
-	#define metalog_get_count()          	0
-	#define metalog_get_count(%1)        	0
 	#define metalog_clear()              	metalog_null()
 
 	// global config
@@ -99,16 +133,6 @@ enum MetalogDest
 
 	// timers
 	#define metalog_tick()               	0.0
-	#define metalog_tick_start()         	metalog_null()
-	#define metalog_tick_start(%1)       	metalog_null()
-	#define metalog_tick_stop()          	0.0
-	#define metalog_tick_stop(%1)        	0.0
-	#define metalog_tick_elapsed()       	0.0
-	#define metalog_tick_elapsed(%1)     	0.0
-	#define metalog_tick_reset()         	metalog_null()
-	#define metalog_tick_reset(%1)       	metalog_null()
-	#define metalog_perf()               	0.0
-	#define metalog_perf(%1)             	0.0
 	#define metalog_perf_threshold(%1)   	metalog_null()
 
 #else
