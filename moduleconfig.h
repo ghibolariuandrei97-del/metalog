@@ -26,7 +26,7 @@
  *   to add multiple entries.
  */
 #define MODULE_NAME        "Metalog"
-#define MODULE_VERSION     "1.0"
+#define MODULE_VERSION     "2.0"
 #define MODULE_AUTHOR      "Craxor"
 #define MODULE_URL         "https://amxmodx.org"
 #define MODULE_LOGTAG      "METALOG"
